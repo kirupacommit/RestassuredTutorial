@@ -1,0 +1,45 @@
+{
+    "store": {
+        "book": [
+            {
+                "title": "Book 1",
+                "author": "Author 1",
+                "price": 10.99
+            },
+            {
+                "title": "Book 2",
+                "author": "Author 2",
+                "price": 12.99
+            }
+        ],
+        "location": "New York"
+    },
+    "library": {
+        "person": "kirupaagar"
+    },
+    "books": [
+        "indian",
+        "Novel"
+    ]
+}
+
+JsonPath expression:
+
+1.$ -->All
+2.$.store or $.library or $.books-->Immediate Object or array
+3.$.store..book or $.store..location -> any Descendant values with property name
+
+4. $.store.book[0] -->by array index number
+5. $.store.book[0:2] --> range indexing ,total 2 objects
+6. $.store.book[*] -->  An array containing all book objects
+
+
+7.$.store.book[?(@.price>11)] --> select book array and then use filter to get values
+8. $.store.book[?(@.title =="Book 1")] --> For text filter
+9. $.store.book[?(@.title =="Book 1")],$ --> combine xpath but the values depends only if both are true
+
+10. $.store.book[?(@.price > 10 && @.price < 15)] --> using operators &&
+11. $.store.book[?(@.author == 'Author 1' && @.price < 11)] --> operators for text and numbers together
+12. $.store.book.min(@.price) -->using functions min(),max(),length()
+13. $.store.book.sortBy(@.price)
+14. $.store.book[?(@.price < 11)]..^ --> select parent object
